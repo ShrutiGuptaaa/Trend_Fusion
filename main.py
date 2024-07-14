@@ -5,7 +5,7 @@ data = [
     [1, "Wide Leg Jeans", "Bottom Wear", "Jeans", "Spring", 2022, "Denim", "Blue", "Solid", "Casual", "Relaxed Fit", 80, 10000, 500, 10, "Images/wide leg jeans.jpeg", "Comfortable and stylish jeans for spring", "jeans, wide leg, denim", 5000, 4.5,"Female"],
     [2, "Chikankari Kurtas", "Top Wear", "Kurtas", "Summer", 2022, "Cotton", "White", "Floral", "Ethnic", "A-Line", 92, 8000, 300, 8, "Images/chikankari.jpeg", "Beautiful hand-embroidered kurtas for summer", "kurtas, chikankari, cotton", 3000, 4.7,"Female"],
     [3, "Cord Sets", "Dress", "Sets", "Fall", 2022, "Corduroy", "Brown", "Stripes", "Casual", "Slim Fit", 60, 6000, 200, 6, "Images/coord_Set.jpeg", "Cozy cord sets for fall", "cord, sets, fall fashion", 2000, 4.2,"Female"],
-    # [4, "Pastel Colors", "Color", "Pastel", "Spring", 2023, "-", "Pastel Pink", "-", "-", "-", 90, 12000, 600, 12, "Images/pastel_colors.jpg", "Soft and soothing pastel colors for spring", "pastel, colors, spring", 7000, 4.8,"Female"],
+    [4, "Mom Jeans", "Bottom Wear", "Jeans", "Summer", 2023, "Denim", "Light Blue", "Solid", "Casual", "Relaxed Fit", 90, 12000, 600, 12, "Images/mom jeans.jpeg", "Trendy mom jeans for summer", "jeans, mom, casual", 5000, 4.7, "Female"],
     [5, "Bell Bottoms", "Bottom Wear", "Jeans", "Summer", 2023, "Denim", "Black", "Solid", "Retro", "Flared", 85, 11000, 550, 11, "Images/bell bottoms.jpeg", "Groovy bell bottoms for summer", "bell bottoms, jeans, retro", 4500, 4.6,"Female"],
     [6, "Silk Blouses", "Top Wear", "Blouses", "Fall", 2022, "Silk", "Red", "Polka Dots", "Formal", "Fitted", 75, 9000, 400, 9, "Images/silk blouse.jpeg", "Luxurious silk blouses for fall", "silk, blouses, formal", 3500, 4.4,"Female"],
     [7, "Athleisure Wear", "Casual", "Athleisure", "Winter", 2023, "Polyester", "Grey", "Stripes", "Sporty", "Relaxed Fit", 95, 15000, 800, 15, "Images/athliesure.jpeg", "Comfortable athleisure wear for winter", "athleisure, sporty, winter", 10000, 4.9,"Female"],
@@ -153,7 +153,6 @@ df = pd.DataFrame(data, columns=columns)
 #title for our recommender
 st.markdown("<h1 style='text-align: center; color: #FF69B4; padding: 20px; font-size:45px'>Welcome to TrendFusion </h1>", unsafe_allow_html=True)
 
-# Create a section for seasonal trends
 st.markdown("""<style>
 img {
     border-radius: 10px;
@@ -181,7 +180,7 @@ st.markdown(button_style, unsafe_allow_html=True)
 def get_top_trends(gender):
     gender_df = df[df['Gender'] == gender]
     if gender_df.empty:
-         return pd.DataFrame()  # Return an empty DataFrame instead of a string
+         return pd.DataFrame() 
     else:
          top_trends = gender_df.sort_values(by=['Popularity Score', 'Search Volume', 'Social Media Mentions'], ascending=False).head(21)
          return top_trends
@@ -203,7 +202,7 @@ def display_trends_for_gender(gender):
             else:
                 col = col3
 
-            # Display the image and text in the current column
+            
             with col:
                 st.image(row['Image URL'], width=200)
                 st.markdown(f"### {row['Trend Name']}")
@@ -215,15 +214,14 @@ def display_trends_for_gender(gender):
         st.write(f"No {gender.lower()} trends available")
 
 # Create tabs
-tab1, tab2, tab3, tab4 = st.tabs(["Trends", "Analysis","Personalization","Seasonal Recommendation"])
+tab1, tab2, tab3, tab4 = st.tabs(["Trends", "Choose category","Personalization","Seasonal Recommendation"])
 
-# Create a section for men's trends
-# Tab 1: Trends
+
 with tab1:
     # Create a section for men's trends
     st.markdown("""<h2 style='text-align: center; color: #77DD77; padding: 20px; font-size:30px'>For Him </h2>""", unsafe_allow_html=True)
 
-    # Add a button to show/hide the trends
+   
     if st.button("Show Men's Trends"):
         st.write("### Men's Trends")
         display_trends_for_gender("Male")
@@ -231,20 +229,20 @@ with tab1:
     # Create a section for women's trends
     st.markdown("""<h2 style='text-align: center; color: #77DD77; padding: 20px; font-size:30px'>For Her </h2>""", unsafe_allow_html=True)
 
-    # Add a button to show/hide the trends
+    
     if st.button("Show Women's Trends"):
         st.write("### Women's Trends")
         display_trends_for_gender("Female")
-# Tab 2: Analysis
+# Tab 2: Choosing category
 with tab2:
-    # Add your analysis code here
+    # choosing category
     options = df['Trend Type'].unique()
     selected_option = st.selectbox("Select a trend type", options)
 
-    # Filter the dataframe based on the selected option
+    # Filtering the dataframe based on the selected option
     filtered_df = df[df['Trend Type'] == selected_option]
 
-    # Sort the dataframe by popularity score in descending order
+    # Sorting the dataframe by popularity score in descending order
     filtered_df = filtered_df.sort_values(by='Popularity Score', ascending=False)
 
     # Display the selected items along with their images and popularity scores
@@ -254,9 +252,8 @@ with tab2:
     rows.append(row)
     for index, row_df in enumerate(filtered_df.itertuples()):
         with rows[-1][index % cols_per_row]:
-            st.image(row_df[16])  # Assuming the 'Image URL' column is at index 16
-            st.write(f" {row_df[2]}")  # Assuming the 'Trend Name' column is at index 2
-            # st.write(f"Popularity Score: {row_df[3]}")  # Assuming the 'Popularity Score' column is at index 3
+            st.image(row_df[16])  # 'Image URL' column is at index 16
+            st.write(f" {row_df[2]}")  # 'Trend Name' column is at index 2
             st.write("-----")
         if (index + 1) % cols_per_row == 0 and index != len(filtered_df) - 1:
             row = st.columns(cols_per_row)
@@ -266,16 +263,16 @@ with tab2:
 with tab3:
     st.header("Personalized Recommendations")
 
-    # Get user input
+    # Getting user input
     user_input = st.text_input("Enter keywords (separated by commas): ")
     search_button = st.button("Search")
 
     if search_button:
-        # Split the input into individual keywords
+        # Spliting the input into individual keywords
         keywords = [keyword.strip().lower() for keyword in user_input.replace(',', ' ').split()]
 
-        # Filter the dataframe to get rows that contain any of the keywords
-        recommended_df = df.copy()  # Create a copy of the original dataframe
+        # Filtering the dataframe to get rows that contain any of the keywords
+        recommended_df = df.copy() 
         mask = pd.Series([False] * len(df))
         for keyword in keywords:
 
@@ -284,7 +281,7 @@ with tab3:
 
 
 
-        # Display the recommended trends
+        # Displaying the recommended trends
         cols_per_row = 2
         rows = []
         row = st.columns(cols_per_row)
@@ -328,14 +325,14 @@ with tab4:
         st.image("Images/spring_image.jpeg", use_column_width=True)
         spring_button = st.button("Show Spring Recommendations")
 
-    # Show recommendations for each season
+    # Showing recommendations for each season
     if summer_button:
         with summer_container:
             st.write("Summer Recommendations:")
             # Filter the dataframe to get summer recommendations
             summer_recs = df[df['Season'] == 'Summer']
             for i in range(0, len(summer_recs), 3):
-                cols = st.columns(3)  # Create 3 columns
+                cols = st.columns(3)  
                 for j in range(3):
                     if i + j < len(summer_recs):
                         with cols[j]:
