@@ -1,4 +1,3 @@
-import helper
 import streamlit as st
 import pandas as pd
 
@@ -6,7 +5,7 @@ data = [
     [1, "Wide Leg Jeans", "Bottom Wear", "Jeans", "Spring", 2022, "Denim", "Blue", "Solid", "Casual", "Relaxed Fit", 80, 10000, 500, 10, "Images/wide leg jeans.jpeg", "Comfortable and stylish jeans for spring", "jeans, wide leg, denim", 5000, 4.5,"Female"],
     [2, "Chikankari Kurtas", "Top Wear", "Kurtas", "Summer", 2022, "Cotton", "White", "Floral", "Ethnic", "A-Line", 92, 8000, 300, 8, "Images/chikankari.jpeg", "Beautiful hand-embroidered kurtas for summer", "kurtas, chikankari, cotton", 3000, 4.7,"Female"],
     [3, "Cord Sets", "Dress", "Sets", "Fall", 2022, "Corduroy", "Brown", "Stripes", "Casual", "Slim Fit", 60, 6000, 200, 6, "Images/coord_Set.jpeg", "Cozy cord sets for fall", "cord, sets, fall fashion", 2000, 4.2,"Female"],
-    # [4, "Pastel Colors", "Color", "Pastel", "Spring", 2023, "-", "Pastel Pink", "-", "-", "-", 90, 12000, 600, 12, "Images/pastel_colors.jpg", "Soft and soothing pastel colors for spring", "pastel, colors, spring", 7000, 4.8,"Female"],
+    [4, "Mom Jeans", "Bottom Wear", "Jeans", "Summer", 2023, "Denim", "Light Blue", "Solid", "Casual", "Relaxed Fit", 90, 12000, 600, 12, "Images/mom jeans.jpeg", "Trendy mom jeans for summer", "jeans, mom, casual", 5000, 4.7, "Female"],
     [5, "Bell Bottoms", "Bottom Wear", "Jeans", "Summer", 2023, "Denim", "Black", "Solid", "Retro", "Flared", 85, 11000, 550, 11, "Images/bell bottoms.jpeg", "Groovy bell bottoms for summer", "bell bottoms, jeans, retro", 4500, 4.6,"Female"],
     [6, "Silk Blouses", "Top Wear", "Blouses", "Fall", 2022, "Silk", "Red", "Polka Dots", "Formal", "Fitted", 75, 9000, 400, 9, "Images/silk blouse.jpeg", "Luxurious silk blouses for fall", "silk, blouses, formal", 3500, 4.4,"Female"],
     [7, "Athleisure Wear", "Casual", "Athleisure", "Winter", 2023, "Polyester", "Grey", "Stripes", "Sporty", "Relaxed Fit", 95, 15000, 800, 15, "Images/athliesure.jpeg", "Comfortable athleisure wear for winter", "athleisure, sporty, winter", 10000, 4.9,"Female"],
